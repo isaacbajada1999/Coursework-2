@@ -10,7 +10,20 @@ router.get('/', async (req, res) =>{
     res.send(await posts.find({}).toArray());
 });
 
+//add posts
+router.post('/', async (req,res) =>{
+    const posts = await loadpostscollection();
 
+    await  posts.insertOne({
+        topic: req.body.topic,
+        price: req.body.price,
+        location: req.body.location,
+        provider: req.body. provider,
+        createdAt: new Date()
+    });
+    res.status(201).send();
+
+});
 
 
 
