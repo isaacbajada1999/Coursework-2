@@ -10,22 +10,7 @@ router.get('/', async (req, res) =>{
     res.send(await users.find({}).toArray());
 });
 
-//create user
-router.post('/', async (req,res) =>{
-    const users = await loaduserscollection();
-    await users.insertOne({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        user_type: req.body.user_type,
 
-    });
-
-
-
-    res.status(201).send();
-
-});
 
 async  function loaduserscollection() {
 
