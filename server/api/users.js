@@ -1,6 +1,6 @@
 const express = require('express');
 const mongodb = require('mongodb');
-var sess = require('client-sessions');
+
 const router = express.Router();
 
 // get users
@@ -9,17 +9,7 @@ router.get('/', async (req, res) =>{
     const users = await loaduserscollection();
     res.send(await users.find({}).toArray());
 });
-var flash = require('express-flash')
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
 
-router.use(cookieParser('keyboard cat'))
-router.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-}))
 //create user
 router.post('/', async (req,res) =>{
     const users = await loaduserscollection();
@@ -31,8 +21,7 @@ router.post('/', async (req,res) =>{
 
     });
 
-    sess = req.session;
-    sess.email = req.body.email;
+
 
     res.status(201).send();
 
