@@ -38,14 +38,7 @@ router.put('/:id', async (req, res) => {
     res.status(200).send();
 });
 
-//delete posts
-router.delete('/:id', async (req, res) =>{
 
-    const posts = await loadpostscollection();
-    await  posts.deleteOne({_id: new mongodb.ObjectId(req.params.id)})
-
-    res.status(200).send();
-});
 
 
 async  function loadpostscollection() {
